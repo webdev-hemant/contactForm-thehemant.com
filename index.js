@@ -10,10 +10,10 @@ const port = 7000;
 // const dbURI = "";
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors);
+app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send({ message: "its working updated " });
+  res.send({ message: "its working updated cors" });
 });
 app.post("/contact", (req, res) => {
   console.log(req.body);
