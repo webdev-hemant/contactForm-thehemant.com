@@ -1,23 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const router = require("./routes/postRoutes");
 const app = express();
 const port = 7000;
 
-// app.use(express.static("public"));
-// app.set("view engine", "ejs");
-// ---------------------------------
-// const dbURI = "";
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(router);
 
 app.get("/", (req, res) => {
   res.send({ message: "its working updated cors" });
-});
-app.post("/contact", (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
 });
 
 app.listen(port, () => {
