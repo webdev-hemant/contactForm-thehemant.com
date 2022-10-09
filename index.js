@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send({ message: "its working " });
+  res.send({ message: "its working updated " });
 });
 app.post("/contact", (req, res) => {
   console.log(req.body);
