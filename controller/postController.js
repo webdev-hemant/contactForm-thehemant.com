@@ -28,7 +28,8 @@ const contact = (req, res, next) => {
     email = "dummy email",
   } = req.body;
   emailFunction({ name, subject, textArea, email });
-  res.send("successful");
+  res.send({ env: process.env.EMAIL_SENDER });
+  // res.send("successful");
 };
 
 module.exports = { contact };
