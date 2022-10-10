@@ -4,6 +4,7 @@ const cors = require("cors");
 const router = require("./routes/postRoutes");
 const app = express();
 const port = 7000;
+require("dotenv").config({ path: "./.env" });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
