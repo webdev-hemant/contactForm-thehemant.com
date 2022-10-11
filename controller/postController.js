@@ -4,15 +4,15 @@ require("dotenv").config({ path: "./.env" });
 const emailFunction = ({ name, subject, textArea, email }) => {
   nodeoutlook.sendEmail({
     auth: {
-      user: process.env.EMAIL_SENDER,
-      pass: process.env.E_PASS,
+      user: "gangecat@outlook.com" || process.env.EMAIL_SENDER,
+      pass: "Mau@1234" || process.env.E_PASS,
     },
-    from: process.env.EMAIL_SENDER,
-    to: process.env.RECIEVERS_EMAIL,
+    from: "gangecat@outlook.com" || process.env.EMAIL_SENDER,
+    to: "marketingwith.hemant@gmail.com" || process.env.RECIEVERS_EMAIL,
     subject: subject,
     html: `<div><h2>Name :- ${name} </h2>  <h4>Email :- ${email}</h4> <h3>Description :- ${textArea}</h3></div>`,
     text: "This is text version!",
-    replyTo: process.env.RECIEVERS_EMAIL,
+    replyTo: "marketingwith.hemant@gmail.com" || process.env.RECIEVERS_EMAIL,
 
     onError: (err) => console.log("error is: ", err),
     onSuccess: (info) => console.log("success", info),
@@ -28,7 +28,7 @@ const contact = (req, res, next) => {
     email = "dummy email",
   } = req.body;
   emailFunction({ name, subject, textArea, email });
-  res.send({ env: process.env.EMAIL_SENDER });
+  res.send({ success: true });
   // res.send("successful");
 };
 
