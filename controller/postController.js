@@ -51,5 +51,41 @@ const contact = (req, res, next) => {
   });
   // res.send("successful");
 };
+const hucForm = (req, res, next) => {
+  const {
+    name = "dummy name",
+    email = "dummy email",
+    collegeName = "dummy college",
+    yearOfStudy = "",
+  } = req.body;
 
-module.exports = { contact };
+  nodeoutlook.sendEmail({
+    auth: {
+      user: "gangecat@outlook.com",
+      pass: "Mau@1234",
+    },
+    from: "gangecat@outlook.com",
+    to: "hustleupacademy@gmail.com",
+    subject: "hustle up academy lead",
+    html: `<div>
+              <h1>New hustler found</h1>
+              <h2>Name :- ${name} </h2>
+              <h4>Email :- ${email}</h4>
+              <h3>College Name :- ${collegeName}</h3>
+              <h3>Year of study :- ${yearOfStudy}</h3>
+            </div>`,
+    text: "This is text version!",
+    replyTo: "hustleupacademy@gmail.com",
+
+    onError: (err) => {
+      console.log("error is: ", err);
+      res.send({ error: err });
+    },
+    onSuccess: (info) => {
+      console.log("success", info);
+      res.send({ success: info });
+    },
+  });
+};
+
+module.exports = { contact, hucForm };
