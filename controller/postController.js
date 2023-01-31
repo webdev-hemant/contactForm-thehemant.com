@@ -62,14 +62,6 @@ const hucForm = async (req, res, next) => {
       yearOfStudy = "",
     } = req.body;
 
-    const hustler = await hucFormModel.create({
-      name,
-      email,
-      collegeName,
-      yearOfStudy,
-    });
-
-    console.log(hustler);
     // const token = createJwt(user._id);
     // res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     // res.status(201).json({ user: user._id });
@@ -94,13 +86,28 @@ const hucForm = async (req, res, next) => {
 
       onError: (err) => {
         console.log("error is: ", err);
-        res.send({ error: err });
+        // res.send({ error: err });
       },
       onSuccess: (info) => {
         console.log("success", info);
-        res.send({ success: `sent on email and ${hustler}` });
+        // res.send({ success: `sent on email and ${hustler}` });
       },
     });
+
+    hucFormModel
+      .create({
+        name,
+        email,
+        collegeName,
+        yearOfStudy,
+      })
+      .then((response) => {
+        console.log({ response });
+        res.status(201).send({ success: `record saved` });
+      })
+      .catch((err) => {
+        res.status(500).send({ error: err });
+      });
   } catch (err) {
     console.error({ err });
     // const errors = handleErrors(err);
