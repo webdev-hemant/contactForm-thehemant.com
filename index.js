@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const router = require("./routes/postRoutes");
+const ssologinRouter = require("./routes/ssologinRoutes");
 const app = express();
 const port = 7000;
 require("dotenv").config({ path: "./.env" });
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
+app.use(ssologinRouter);
 
 mongoose
   .connect(dbURI, {
