@@ -12,14 +12,8 @@ const dbURI = process.env.MONGODB_URI;
 const serverMode = process.env.SERVER_MODE;
 
 let DB_NAME = "";
-
-if (serverMode === "prod") {
-  DB_NAME = "fua_prod";
-}
-
-if (serverMode === "dev") {
-  DB_NAME = "fua_dev";
-}
+if (serverMode === "prod") DB_NAME = "fua_prod";
+if (serverMode === "dev") DB_NAME = "fua_dev";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
