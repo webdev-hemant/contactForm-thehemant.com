@@ -11,6 +11,16 @@ require("dotenv").config({ path: "./.env" });
 const dbURI = process.env.MONGODB_URI;
 const serverMode = process.env.SERVER_MODE;
 
+let DB_NAME = "";
+
+if (serverMode === "prod") {
+  DB_NAME = "fua_prod";
+}
+
+if (serverMode === "dev") {
+  DB_NAME = "fua_dev";
+}
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -19,13 +29,12 @@ app.use(ssologinRouter);
 
 mongoose
   .connect(dbURI, {
+    dbName: DB_NAME,
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    // app.listen(PORT, () => {
-    console.log(`mongodb conected and server started on port ${port}`);
-    // })
+    console.log(`mongodb conected`);
   })
   .catch((err) => console.log({ err }));
 
