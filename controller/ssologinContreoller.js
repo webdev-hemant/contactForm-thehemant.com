@@ -9,8 +9,8 @@ const ssologin = (req, res, next) => {
   if (auth === HAND_SHAKE) {
     getAllContacts.find().then((data) => {
       const filteredData = data?.map(
-        ({ email, name, collegeName, yearOfStudy }) => {
-          return { email, name, collegeName, yearOfStudy };
+        ({ email, name, collegeName, yearOfStudy, mobile }) => {
+          return { email, name, collegeName, yearOfStudy, mobile };
         }
       );
       // console.log(filteredData);

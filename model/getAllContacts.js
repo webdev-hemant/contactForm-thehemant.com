@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   collegeName: String,
   yearOfStudy: String,
+  mobile: String,
 });
 
 // var userModel=mongoose.model('users',userSchema);
