@@ -14,6 +14,10 @@ const hucForm = new mongoose.Schema({
     type: String,
     required: [true, "name required"],
   },
+  mobile: {
+    type: String,
+    required: [true, "mobile required"],
+  },
   collegeName: {
     type: String,
     required: [true, "collegeName required"],

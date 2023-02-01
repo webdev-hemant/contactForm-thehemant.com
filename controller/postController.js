@@ -40,6 +40,7 @@ const hucForm = async (req, res, next) => {
     if (auth === FORM_KEY) {
       const {
         name = "dummy name",
+        mobile = "",
         email = "dummy email",
         collegeName = "dummy college",
         yearOfStudy = "",
@@ -74,6 +75,7 @@ const hucForm = async (req, res, next) => {
       hucFormModel
         .create({
           name,
+          mobile,
           email,
           collegeName,
           yearOfStudy,
