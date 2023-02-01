@@ -9,7 +9,7 @@ const port = 7000;
 require("dotenv").config({ path: "./.env" });
 
 const dbURI = process.env.MONGODB_URI;
-const serverMode = process.env.SERVER_MODE;
+// const serverMode = process.env.SERVER_MODE;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -28,10 +28,6 @@ mongoose
     // })
   })
   .catch((err) => console.log({ err }));
-
-if (serverMode === "prod") {
-  mongoose.connection.useDb("Users");
-}
 
 app.get("/", (req, res) => {
   res.send({ message: "its working updated cors" });

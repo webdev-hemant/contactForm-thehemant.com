@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
+require("dotenv").config({ path: "./.env" });
+
+const serverMode = process.env.SERVER_MODE;
+
+let DB_COLLECTION_NAME = "";
+
+if (serverMode === "prod") {
+  DB_COLLECTION_NAME = "production_db_form";
+}
+
+if (serverMode === "dev") {
+  DB_COLLECTION_NAME = "dev_db_form";
+}
 // const bcrypt = require("bcrypt");
 
 const hucForm = new mongoose.Schema({
@@ -28,6 +41,6 @@ const hucForm = new mongoose.Schema({
   },
 });
 
-const hucFormModel = mongoose.model("huc_form", hucForm);
+const hucFormModel = mongoose.model(DB_COLLECTION_NAME, hucForm);
 
 module.exports = hucFormModel;
